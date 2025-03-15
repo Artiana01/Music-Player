@@ -61,7 +61,24 @@ class MainActivity : AppCompatActivity() {
         if(themeIndex == 4 &&  resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_NO)
             Toast.makeText(this, "Black Theme Works Best in Dark Mode!!", Toast.LENGTH_LONG).show()
 
-
+        if(requestRuntimePermission()){
+            initializeLayout()
+            //for retrieving favourites data using shared preferences
+            FavouriteActivity.favouriteSongs = ArrayList()
+            val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE)
+            val jsonString = editor.getString("FavouriteSongs", null)
+            val typeToken = object : TypeToken<ArrayList<Music>>(){}.type
+            if(jsonString != null){
+                val data: ArrayList<Music> = GsonBuilder().create().fromJson(jsonString, typeToken)
+                FavouriteActivity.favouriteSongs.addAll(data)
+            }
+            PlaylistActivity.musicPlaylist = MusicPlaylist()
+            val jsonStringPlaylist = editor.getString("MusicPlaylist", null)
+            if(jsonStringPlaylist != null){
+                val dataPlaylist: MusicPlaylist = GsonBuilder().create().fromJson(jsonStringPlaylist, MusicPlaylist::class.java)
+                PlaylistActivity.musicPlaylist = dataPlaylist
+            }
+        }
 
         binding.shuffleBtn.setOnClickListener {
             val intent = Intent(this@MainActivity, PlayerActivity::class.java)
@@ -69,7 +86,9 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("class", "MainActivity")
             startActivity(intent)
         }
-
+        binding.favouriteBtn.setOnClickListener {
+            startActivity(Intent(this@MainActivity, FavouriteActivity::class.java))
+        }
         binding.playlistBtn.setOnClickListener {
             startActivity(Intent(this@MainActivity, PlaylistActivity::class.java))
         }
@@ -227,8 +246,8 @@ class MainActivity : AppCompatActivity() {
 
         //for storing favourites data using shared preferences
         val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE).edit()
-
-
+        val jsonString = GsonBuilder().create().toJson(FavouriteActivity.favouriteSongs)
+        editor.putString("FavouriteSongs", jsonString)
         val jsonStringPlaylist = GsonBuilder().create().toJson(PlaylistActivity.musicPlaylist)
         editor.putString("MusicPlaylist", jsonStringPlaylist)
         editor.apply()
