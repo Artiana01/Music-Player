@@ -69,7 +69,16 @@ fun exitApplication() {
     exitProcess(1)
 }
 
-
+fun favouriteChecker(id: String): Int {
+    PlayerActivity.isFavourite = false
+    FavouriteActivity.favouriteSongs.forEachIndexed { index, music ->
+        if (id == music.id) {
+            PlayerActivity.isFavourite = true
+            return index
+        }
+    }
+    return -1
+}
 
 fun checkPlaylist(playlist: ArrayList<Music>): ArrayList<Music> {
     val indicesToRemove = mutableListOf<Int>()

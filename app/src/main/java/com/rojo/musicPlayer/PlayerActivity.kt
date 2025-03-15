@@ -138,7 +138,19 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 }
         }
 
-
+        binding.favouriteBtnPA.setOnClickListener {
+            fIndex = favouriteChecker(musicListPA[songPosition].id)
+            if(isFavourite){
+                isFavourite = false
+                binding.favouriteBtnPA.setImageResource(R.drawable.favourite_empty_icon)
+                FavouriteActivity.favouriteSongs.removeAt(fIndex)
+            } else{
+                isFavourite = true
+                binding.favouriteBtnPA.setImageResource(R.drawable.favourite_icon)
+                FavouriteActivity.favouriteSongs.add(musicListPA[songPosition])
+            }
+            FavouriteActivity.favouritesChanged = true
+        }
     }
 //Important Function
     private fun initializeLayout(){
@@ -155,9 +167,9 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             }
             "MusicAdapterSearch"-> initServiceAndPlaylist(MainActivity.musicListSearch, shuffle = false)
             "MusicAdapter" -> initServiceAndPlaylist(MainActivity.MusicListMA, shuffle = false)
-
+            "FavouriteAdapter"-> initServiceAndPlaylist(FavouriteActivity.favouriteSongs, shuffle = false)
             "MainActivity"-> initServiceAndPlaylist(MainActivity.MusicListMA, shuffle = true)
-
+            "FavouriteShuffle"-> initServiceAndPlaylist(FavouriteActivity.favouriteSongs, shuffle = true)
             "PlaylistDetailsAdapter"->
                 initServiceAndPlaylist(PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist, shuffle = false)
             "PlaylistDetailsShuffle"->
@@ -168,7 +180,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
     }
 
     private fun setLayout(){
-
+        fIndex = favouriteChecker(musicListPA[songPosition].id)
         Glide.with(applicationContext)
             .load(musicListPA[songPosition].artUri)
             .apply(RequestOptions().placeholder(R.drawable.music_player_icon_slash_screen).centerCrop())

@@ -47,8 +47,17 @@ class PlaylistViewAdapter(private val context: Context, private var playlistList
 
             setDialogBtnBackground(context, customDialog)
         }
-
-
+        holder.root.setOnClickListener {
+            val intent = Intent(context, PlaylistDetails::class.java)
+            intent.putExtra("index", position)
+            ContextCompat.startActivity(context, intent, null)
+        }
+        if(PlaylistActivity.musicPlaylist.ref[position].playlist.size > 0){
+            Glide.with(context)
+                .load(PlaylistActivity.musicPlaylist.ref[position].playlist[0].artUri)
+                .apply(RequestOptions().placeholder(R.drawable.music_player_icon_slash_screen).centerCrop())
+                .into(holder.image)
+        }
     }
 
     override fun getItemCount(): Int {

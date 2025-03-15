@@ -104,7 +104,15 @@ private val selectionActivity: Boolean = false)
                     sendIntent(ref = "PlaylistDetailsAdapter", pos = position)
                 }
             }
+            selectionActivity ->{
+                holder.root.setOnClickListener {
+                    if(addSong(musicList[position]))
+                        holder.root.setBackgroundColor(ContextCompat.getColor(context, R.color.cool_pink))
+                    else
+                        holder.root.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
 
+                }
+            }
             else ->{
                 holder.root.setOnClickListener {
                 when{
@@ -132,6 +140,19 @@ private val selectionActivity: Boolean = false)
         intent.putExtra("class", ref)
         ContextCompat.startActivity(context, intent, null)
     }
-
-
+    private fun addSong(song: Music): Boolean{
+        PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist.forEachIndexed { index, music ->
+            if(song.id == music.id){
+                PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist.removeAt(index)
+                return false
+            }
+        }
+        PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist.add(song)
+        return true
+    }
+    fun refreshPlaylist(){
+        musicList = ArrayList()
+        musicList = PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist
+        notifyDataSetChanged()
+    }
 }

@@ -46,11 +46,22 @@ class MusicService : Service(), AudioManager.OnAudioFocusChangeListener {
 
         val contentIntent = PendingIntent.getActivity(this, 0, intent, flag)
 
+        val prevIntent = Intent(
+            baseContext, NotificationReceiver::class.java
+        ).setAction(ApplicationClass.PREVIOUS)
+        val prevPendingIntent = PendingIntent.getBroadcast(baseContext, 0, prevIntent, flag)
 
+        val playIntent =
+            Intent(baseContext, NotificationReceiver::class.java).setAction(ApplicationClass.PLAY)
+        val playPendingIntent = PendingIntent.getBroadcast(baseContext, 0, playIntent, flag)
 
+        val nextIntent =
+            Intent(baseContext, NotificationReceiver::class.java).setAction(ApplicationClass.NEXT)
+        val nextPendingIntent = PendingIntent.getBroadcast(baseContext, 0, nextIntent, flag)
 
-
-
+        val exitIntent =
+            Intent(baseContext, NotificationReceiver::class.java).setAction(ApplicationClass.EXIT)
+        val exitPendingIntent = PendingIntent.getBroadcast(baseContext, 0, exitIntent, flag)
 
         val imgArt = getImgArt(PlayerActivity.musicListPA[PlayerActivity.songPosition].path)
         val image = if (imgArt != null) {
@@ -69,7 +80,10 @@ class MusicService : Service(), AudioManager.OnAudioFocusChangeListener {
                 .setPriority(androidx.core.app.NotificationCompat.PRIORITY_HIGH)
                 .setVisibility(androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC)
                 .setOnlyAlertOnce(true)
-
+                .addAction(R.drawable.previous_icon, "Previous", prevPendingIntent)
+                .addAction(playPauseBtn, "Play", playPendingIntent)
+                .addAction(R.drawable.next_icon, "Next", nextPendingIntent)
+                .addAction(R.drawable.exit_icon, "Exit", exitPendingIntent)
                 .build()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -201,7 +215,7 @@ class MusicService : Service(), AudioManager.OnAudioFocusChangeListener {
 
         playMusic()
 
-
+        PlayerActivity.fIndex = favouriteChecker(PlayerActivity.musicListPA[PlayerActivity.songPosition].id)
         if(PlayerActivity.isFavourite) PlayerActivity.binding.favouriteBtnPA.setImageResource(R.drawable.favourite_icon)
         else PlayerActivity.binding.favouriteBtnPA.setImageResource(R.drawable.favourite_empty_icon)
 
