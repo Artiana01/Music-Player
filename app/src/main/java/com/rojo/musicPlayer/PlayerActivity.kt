@@ -158,8 +158,10 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
             "MainActivity"-> initServiceAndPlaylist(MainActivity.MusicListMA, shuffle = true)
 
-
-
+            "PlaylistDetailsAdapter"->
+                initServiceAndPlaylist(PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist, shuffle = false)
+            "PlaylistDetailsShuffle"->
+                initServiceAndPlaylist(PlaylistActivity.musicPlaylist.ref[PlaylistDetails.currentPlaylistPos].playlist, shuffle = true)
             "PlayNext"->initServiceAndPlaylist(PlayNext.playNextList, shuffle = false, playNext = true)
         }
     if (musicService!= null && !isPlaying) playMusic()

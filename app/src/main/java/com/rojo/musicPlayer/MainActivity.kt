@@ -61,12 +61,7 @@ class MainActivity : AppCompatActivity() {
         if(themeIndex == 4 &&  resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_NO)
             Toast.makeText(this, "Black Theme Works Best in Dark Mode!!", Toast.LENGTH_LONG).show()
 
-        if(requestRuntimePermission()){
-            initializeLayout()
-            //for retrieving favourites data using shared preferences
 
-
-        }
 
         binding.shuffleBtn.setOnClickListener {
             val intent = Intent(this@MainActivity, PlayerActivity::class.java)
@@ -75,6 +70,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.playlistBtn.setOnClickListener {
+            startActivity(Intent(this@MainActivity, PlaylistActivity::class.java))
+        }
         binding.playNextBtn.setOnClickListener {
             startActivity(Intent(this@MainActivity, PlayNext::class.java))
         }
@@ -82,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId)
             {
 //                R.id.navFeedback -> startActivity(Intent(this@MainActivity, FeedbackActivity::class.java))
-
+                R.id.navSettings -> startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
 
                 R.id.navExit -> {
                     val builder = MaterialAlertDialogBuilder(this)
@@ -230,6 +228,9 @@ class MainActivity : AppCompatActivity() {
         //for storing favourites data using shared preferences
         val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE).edit()
 
+
+        val jsonStringPlaylist = GsonBuilder().create().toJson(PlaylistActivity.musicPlaylist)
+        editor.putString("MusicPlaylist", jsonStringPlaylist)
         editor.apply()
 
         //for sorting
