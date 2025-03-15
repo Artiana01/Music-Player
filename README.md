@@ -10,3 +10,11 @@ Music Player est une application Android moderne et intuitive pour écouter, org
 📌 Lire plus tard – Mets des chansons en file d'attente.
 ⏳ Minuteur – Arrête la musique après un certain temps.
 🎨 Personnalisation du thème – Change l’apparence de l’application selon tes goûts.
+
+
+🚀 Installation
+
+    Clone le repo : https://github.com/Artiana01/Music-Player.git
+
+Ouvre le projet avec Android Studio.
+Compile et exécute l'application sur un émulateur ou un appareil physique.
