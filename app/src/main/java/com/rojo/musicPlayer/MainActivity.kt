@@ -65,7 +65,19 @@ class MainActivity : AppCompatActivity() {
             initializeLayout()
             //for retrieving favourites data using shared preferences
 
+            val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE)
+            val jsonString = editor.getString("FavouriteSongs", null)
+            val typeToken = object : TypeToken<ArrayList<Music>>(){}.type
+            if(jsonString != null){
+                val data: ArrayList<Music> = GsonBuilder().create().fromJson(jsonString, typeToken)
 
+            }
+
+            val jsonStringPlaylist = editor.getString("MusicPlaylist", null)
+            if(jsonStringPlaylist != null){
+                val dataPlaylist: MusicPlaylist = GsonBuilder().create().fromJson(jsonStringPlaylist, MusicPlaylist::class.java)
+
+            }
         }
 
         binding.shuffleBtn.setOnClickListener {
@@ -75,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
         binding.playNextBtn.setOnClickListener {
             startActivity(Intent(this@MainActivity, PlayNext::class.java))
         }
@@ -82,7 +95,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId)
             {
 //                R.id.navFeedback -> startActivity(Intent(this@MainActivity, FeedbackActivity::class.java))
-
+                R.id.navSettings -> startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
 
                 R.id.navExit -> {
                     val builder = MaterialAlertDialogBuilder(this)
@@ -229,6 +242,7 @@ class MainActivity : AppCompatActivity() {
 
         //for storing favourites data using shared preferences
         val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE).edit()
+
 
         editor.apply()
 
