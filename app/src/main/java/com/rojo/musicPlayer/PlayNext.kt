@@ -21,7 +21,7 @@ class PlayNext : AppCompatActivity() {
         binding.playNextRV.setHasFixedSize(true)
         binding.playNextRV.setItemViewCacheSize(13)
         binding.playNextRV.layoutManager = GridLayoutManager(this, 4)
-
+        binding.playNextRV.adapter = FavouriteAdapter(this, playNextList, playNext = true)
 
         if(playNextList.isNotEmpty())
             binding.instructionPN.visibility = View.GONE

@@ -51,7 +51,7 @@ class PlaylistDetails : AppCompatActivity() {
                 .setMessage("Do you want to remove all songs from playlist?")
                 .setPositiveButton("Yes"){ dialog, _ ->
                     PlaylistActivity.musicPlaylist.ref[currentPlaylistPos].playlist.clear()
-
+                    adapter.refreshPlaylist()
                     dialog.dismiss()
                 }
                 .setNegativeButton("No"){dialog, _ ->
