@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#CCD5D5D5">
+
 
     <com.lukelorusso.verticalseekbar.VerticalSeekBar
         android:id="@+id/verticalBar"
@@ -24,6 +26,6 @@
         android:text="@string/world_of_music"
         android:gravity="center"
         android:textSize="18sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/black"/>
 
 </LinearLayout>

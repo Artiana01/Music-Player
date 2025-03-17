@@ -60,8 +60,7 @@
         android:padding="5dp"
         android:src="@drawable/music_player_icon_slash_screen"
         app:shapeAppearanceOverlay="@style/curved"
-        app:strokeColor="#a8ada2"
-        app:strokeWidth="3dp" />
+         />
 
 <!--    Current Song Name-->
     <TextView
