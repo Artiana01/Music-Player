@@ -8,22 +8,22 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/songImgFV"
-        android:layout_width="80dp"
+        android:layout_width="match_parent"
         android:layout_height="75dp"
-        app:shapeAppearanceOverlay="@style/curved"
         android:contentDescription="@string/song_name"
+        android:padding="5dp"
         android:src="@drawable/music_player_icon_slash_screen"
-        android:padding="5dp"/>
+        app:shapeAppearanceOverlay="@style/curved" />
 
     <TextView
         android:id="@+id/songNameFV"
-        android:layout_width="80dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:textColor="?colorOnPrimary"
-        android:text="@string/song_name"
-        android:gravity="center"
         android:layout_marginTop="75dp"
-        android:padding="5dp"/>
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="5dp"
+        android:text="@string/song_name"
+        android:textColor="?colorOnPrimary" />
 
 </com.google.android.material.card.MaterialCardView>

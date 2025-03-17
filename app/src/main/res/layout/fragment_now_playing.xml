@@ -25,7 +25,7 @@
         app:iconTint="@color/white"
         android:backgroundTint="?attr/themeColor"
         android:layout_centerVertical="true"
-        app:iconSize="40dp"
+        app:iconSize="35dp"
         android:layout_marginEnd="10dp"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -36,7 +36,7 @@
         app:iconTint="@color/white"
         android:backgroundTint="?attr/themeColor"
         android:layout_centerVertical="true"
-        app:iconSize="40dp"
+        app:iconSize="35dp"
         android:layout_toStartOf="@id/nextBtnNP"
         android:layout_marginHorizontal="5dp"/>
     <TextView
