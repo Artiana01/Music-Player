@@ -51,11 +51,16 @@
         app:layout_constraintTop_toBottomOf="@id/linearLayout"
         android:background="?attr/themeColor"
         android:layout_marginTop="10dp">
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/playlistImgPD"
             android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/music_player_icon_slash_screen"/>
+            android:layout_height="166dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/music_player_icon_slash_screen"
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
         <TextView
             android:id="@+id/moreInfoPD"
             android:layout_width="match_parent"
