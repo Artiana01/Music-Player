@@ -54,13 +54,12 @@
 <!--    Current Song Image-->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/songImgPA"
-        android:layout_width="411dp"
+        android:layout_width="248dp"
         android:layout_height="250dp"
         android:layout_margin="10dp"
         android:padding="5dp"
         android:src="@drawable/music_player_icon_slash_screen"
-        app:shapeAppearanceOverlay="@style/curved"
-         />
+        app:shapeAppearanceOverlay="@style/curved" />
 
 <!--    Current Song Name-->
     <TextView
