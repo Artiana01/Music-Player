@@ -54,26 +54,28 @@
 <!--    Current Song Image-->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/songImgPA"
-        android:layout_width="248dp"
+        android:layout_width="251dp"
         android:layout_height="250dp"
         android:layout_margin="10dp"
         android:padding="5dp"
         android:src="@drawable/music_player_icon_slash_screen"
-        app:shapeAppearanceOverlay="@style/curved" />
+        app:shapeAppearanceOverlay="@style/curved"
+        android:alpha="0.5"/>
 
-<!--    Current Song Name-->
+
+    <!--    Current Song Name-->
     <TextView
         android:id="@+id/songNamePA"
-        android:layout_width="match_parent"
+        android:layout_width="351dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:text="@string/song_name"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        android:textColor="?colorOnPrimary"
-        android:gravity="center"
         android:layout_weight="1"
-        android:textIsSelectable="true" />
+        android:gravity="center"
+        android:text="@string/song_name"
+        android:textColor="?colorOnPrimary"
+        android:textIsSelectable="true"
+        android:textSize="18sp"
+        android:textStyle="italic" />
 
 <!--    Floating Buttons for Previous, Pause & Next-->
 
