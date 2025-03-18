@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.media.audiofx.AudioEffect
 import android.media.audiofx.LoudnessEnhancer
 import android.net.Uri
 import android.os.Bundle
