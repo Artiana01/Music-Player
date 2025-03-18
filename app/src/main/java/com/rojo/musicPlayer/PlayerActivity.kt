@@ -147,6 +147,15 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 }
         }
 
+        binding.shareBtnPA.setOnClickListener {
+            val shareIntent = Intent()
+            shareIntent.action = Intent.ACTION_SEND
+            shareIntent.type = "audio/*"
+            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(musicListPA[songPosition].path))
+            startActivity(Intent.createChooser(shareIntent, "Sharing Music File!!"))
+
+        }
+
         binding.favouriteBtnPA.setOnClickListener {
             fIndex = favouriteChecker(musicListPA[songPosition].id)
             if(isFavourite){

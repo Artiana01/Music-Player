@@ -59,9 +59,11 @@
         android:layout_margin="10dp"
         android:padding="5dp"
         android:src="@drawable/music_player_icon_slash_screen"
-        app:shapeAppearanceOverlay="@style/curved" />
+        app:shapeAppearanceOverlay="@style/curved"
+        android:alpha="0.5"/>
 
-<!--    Current Song Name-->
+
+    <!--    Current Song Name-->
     <TextView
         android:id="@+id/songNamePA"
         android:layout_width="351dp"
