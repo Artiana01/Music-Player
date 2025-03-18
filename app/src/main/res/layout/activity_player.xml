@@ -54,7 +54,7 @@
 <!--    Current Song Image-->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/songImgPA"
-        android:layout_width="248dp"
+        android:layout_width="251dp"
         android:layout_height="250dp"
         android:layout_margin="10dp"
         android:padding="5dp"
